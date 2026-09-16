@@ -1,0 +1,41 @@
+.energy-usage { display: flex; flex-direction: column; gap: var(--space-5); }
+
+.energy-usage__periods {
+  display: inline-flex;
+  gap: var(--space-1);
+  padding: 4px;
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  width: fit-content;
+}
+
+.energy-usage__period {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  min-height: 40px;
+}
+
+.energy-usage__period--active {
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.energy-usage__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.energy-usage__chart-card { padding: var(--space-5); }
+
+@media (max-width: 640px) {
+  .energy-usage__periods { width: 100%; }
+  .energy-usage__period { flex: 1; }
+}
