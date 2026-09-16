@@ -1,0 +1,31 @@
+.ui-chart {
+  margin: 0;
+  width: 100%;
+}
+
+.ui-chart__caption {
+  margin-bottom: var(--space-3);
+}
+
+.ui-chart__title {
+  margin: 0;
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
+.ui-chart__desc {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.ui-chart__area {
+  width: 100%;
+  min-width: 0;
+}
+
+.ui-chart__summary {
+  margin: var(--space-3) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
