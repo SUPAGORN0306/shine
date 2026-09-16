@@ -1,0 +1,28 @@
+.ui-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-8);
+  color: var(--color-text-muted);
+}
+
+.ui-loading--sm { padding: var(--space-4); font-size: var(--font-size-sm); }
+.ui-loading--md { font-size: var(--font-size-md); }
+
+.ui-loading__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: ui-loading-spin 0.7s linear infinite;
+}
+
+@keyframes ui-loading-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-loading__spinner { animation: none; }
+}
