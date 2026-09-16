@@ -1,0 +1,52 @@
+.decision-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.decision-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.decision-card__name {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.decision-card__desc {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.decision-card__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.decision-card__stats dt {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.decision-card__stats dd {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.decision-card__saving {
+  color: var(--color-success);
+}
+
+.decision-card__actions {
+  display: flex;
+  justify-content: flex-end;
+}
