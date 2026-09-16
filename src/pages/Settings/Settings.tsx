@@ -12,7 +12,7 @@ import Card from '../../components/ui/Card'
 import Button from '../../components/ui/Button'
 import Badge from '../../components/ui/Badge'
 import Modal from '../../components/ui/Modal'
-import { formatCurrency, formatNumber } from '../../utils/formatting'
+import { formatCurrency } from '../../utils/formatting'
 import './Settings.css'
 
 const BASELINE_OPTIONS: { value: BaselineMode; label: string; description: string }[] = [

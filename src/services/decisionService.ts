@@ -20,7 +20,7 @@ import {
   getSelectedPlan,
   setSelectedPlan,
 } from './storageService'
-import { simulateScenario, getPresetScenarios } from './whatIfService'
+import { simulateScenario } from './whatIfService'
 import { calculateBaseline, getPreferenceScore } from './preferenceService'
 import { round } from '../utils/calculations'
 

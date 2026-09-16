@@ -1,20 +1,43 @@
-.ui-status {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-weight: 500;
-  white-space: nowrap;
+/**
+ * Status — แสดงสถานะพร้อม icon + text (ไม่พึ่งสีอย่างเดียว)
+ */
+
+import './Status.css'
+
+export type StatusType =
+  | 'on'
+  | 'off'
+  | 'completed'
+  | 'waiting'
+  | 'blocked'
+  | 'idle'
+
+interface StatusProps {
+  type: StatusType
+  label?: string
+  size?: 'sm' | 'md'
 }
 
-.ui-status--sm { font-size: var(--font-size-xs); }
-.ui-status--md { font-size: var(--font-size-sm); }
-
-.ui-status__symbol {
-  font-size: 1rem;
-  line-height: 1;
+const STATUS_META: Record<StatusType, { symbol: string; defaultLabel: string; css: string }> = {
+  on:        { symbol: '●', defaultLabel: 'ON',        css: 'success' },
+  off:       { symbol: '●', defaultLabel: 'OFF',       css: 'neutral' },
+  completed: { symbol: '✓', defaultLabel: 'Completed', css: 'success' },
+  waiting:   { symbol: '!', defaultLabel: 'Waiting',   css: 'warning' },
+  blocked:   { symbol: '×', defaultLabel: 'Blocked',   css: 'danger'  },
+  idle:      { symbol: '○', defaultLabel: 'Idle',      css: 'neutral' },
 }
 
-.ui-status--success { color: #047857; }
-.ui-status--warning { color: #B45309; }
-.ui-status--danger  { color: #B91C1C; }
-.ui-status--neutral { color: var(--color-text-muted); }
+export default function Status({ type, label, size = 'md' }: StatusProps) {
+  const meta = STATUS_META[type]
+  const text = label ?? meta.defaultLabel
+
+  return (
+    <span
+      className={`ui-status ui-status--${meta.css} ui-status--${size}`}
+      role="status"
+    >
+      <span className="ui-status__symbol" aria-hidden="true">{meta.symbol}</span>
+      <span className="ui-status__label">{text}</span>
+    </span>
+  )
+}

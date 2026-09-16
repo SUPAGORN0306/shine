@@ -9,7 +9,6 @@ import type { Feedback, SelectedPlan } from '../types'
 import { getFeedback, setFeedback } from './storageService'
 import { updatePreferences } from './preferenceService'
 import { generateActualResult, type ActualResultSummary } from './controlService'
-import { round } from '../utils/calculations'
 
 // ============================================================
 // Actual Result Calculation

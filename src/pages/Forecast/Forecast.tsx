@@ -35,7 +35,7 @@ export default function Forecast() {
 
   // รวม Actual (24 ชม. ย้อนหลัง) + Predicted (horizon ข้างหน้า)
   const chartData: ForecastPoint[] = useMemo(() => {
-    const past = getChartData('daily').map((p) => ({
+    const past: ForecastPoint[] = getChartData('daily').map((p) => ({
       label: p.label,
       actual: p.powerW,
     }))

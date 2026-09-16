@@ -100,7 +100,6 @@ export interface ExecutionResult {
  * - ⚠️ ไม่ได้ควบคุมอุปกรณ์จริง
  */
 export function executeDecision(plan: SelectedPlan): ExecutionResult {
-  const permissions = getPermissions()
   const history = getControlHistory()
   const entries: ControlHistoryEntry[] = []
 

@@ -1,0 +1,20 @@
+.ui-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.ui-status--sm { font-size: var(--font-size-xs); }
+.ui-status--md { font-size: var(--font-size-sm); }
+
+.ui-status__symbol {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.ui-status--success { color: #047857; }
+.ui-status--warning { color: #B45309; }
+.ui-status--danger  { color: #B91C1C; }
+.ui-status--neutral { color: var(--color-text-muted); }

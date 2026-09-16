@@ -4,7 +4,7 @@
  */
 
 import { useMemo, useState } from 'react'
-import { Info, Target, Sparkles, RefreshCw, CheckCircle2 } from 'lucide-react'
+import { Info, Target, RefreshCw, CheckCircle2 } from 'lucide-react'
 import type { Constraints, DecisionPlan, Priority } from '../../types'
 import { useSettings } from '../../contexts/SettingsContext'
 import {
@@ -20,9 +20,8 @@ import ControlModal from '../../components/ControlModal/ControlModal'
 import Card from '../../components/ui/Card'
 import Badge from '../../components/ui/Badge'
 import Button from '../../components/ui/Button'
-import Status from '../../components/ui/Status'
 import EmptyState from '../../components/ui/EmptyState'
-import { formatCurrency, formatDateTime } from '../../utils/formatting'
+import { formatDateTime } from '../../utils/formatting'
 import './Decisions.css'
 
 const PRIORITIES: { value: Priority; label: string }[] = [

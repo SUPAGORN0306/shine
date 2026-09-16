@@ -11,7 +11,6 @@ import { simulateScenario, getPresetScenarios, getDefaultActions } from '../../s
 import { useSettings } from '../../contexts/SettingsContext'
 import Card from '../../components/ui/Card'
 import Badge from '../../components/ui/Badge'
-import Button from '../../components/ui/Button'
 import EnergyCard from '../../components/EnergyCard/EnergyCard'
 import ScenarioCard from '../../components/ScenarioCard/ScenarioCard'
 import { formatEnergy, formatCurrency, formatNumber } from '../../utils/formatting'
