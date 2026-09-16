@@ -1,0 +1,138 @@
+/* ============================================================
+   Shine — Design Tokens
+   โทนหลัก: ม่วงพาสเทล | สำเร็จ: เขียว | ข้อมูล: น้ำเงิน | เตือน: ส้ม/แดง
+   ============================================================ */
+
+:root {
+  /* --- สีหลัก (ม่วงพาสเทล) --- */
+  --color-primary: #A78BFA;           /* pastel violet */
+  --color-primary-dark: #7C5CE0;      /* สำหรับ hover/active */
+  --color-primary-soft: #EDE9FE;      /* พื้นหลังอ่อน */
+  --color-primary-contrast: #FFFFFF;
+
+  /* --- สีความหมาย --- */
+  --color-success: #10B981;           /* เขียว — ประหยัด/สำเร็จ */
+  --color-success-soft: #D1FAE5;
+  --color-info: #3B82F6;              /* น้ำเงิน — ข้อมูล */
+  --color-info-soft: #DBEAFE;
+  --color-warning: #F59E0B;           /* ส้ม — เตือน */
+  --color-warning-soft: #FEF3C7;
+  --color-danger: #EF4444;            /* แดง — อันตราย/บล็อก */
+  --color-danger-soft: #FEE2E2;
+
+  /* --- สีกลาง --- */
+  --color-bg: #FAFAFB;                /* off-white */
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F4F4F7;
+  --color-border: #E5E7EB;
+  --color-text: #1F2937;              /* dark text */
+  --color-text-muted: #6B7280;
+  --color-text-disabled: #9CA3AF;
+
+  /* --- Spacing (8pt scale) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* --- Radius --- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* --- Shadow (เบา) --- */
+  --shadow-sm: 0 1px 2px rgba(17, 24, 39, 0.05);
+  --shadow-md: 0 2px 8px rgba(17, 24, 39, 0.06);
+  --shadow-lg: 0 4px 16px rgba(17, 24, 39, 0.08);
+
+  /* --- Typography --- */
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', 'Sarabun',
+    'Noto Sans Thai', sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+
+  /* --- Breakpoints (อ้างอิงใน media queries) --- */
+  --bp-mobile: 640px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+}
+
+/* ============================================================
+   Base Reset
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ลิงก์ */
+a {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   Focus State (Accessibility — visible, ชัดเจน)
+   ============================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ปุ่ม/ฟอร์มพื้นฐาน */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* ลดการเคลื่อนไหวสำหรับผู้ใช้ที่ตั้งค่าไว้ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
