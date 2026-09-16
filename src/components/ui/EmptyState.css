@@ -1,0 +1,32 @@
+.ui-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-10) var(--space-6);
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.ui-empty__icon {
+  font-size: 2rem;
+  color: var(--color-text-disabled);
+}
+
+.ui-empty__title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.ui-empty__desc {
+  margin: 0;
+  max-width: 480px;
+  font-size: var(--font-size-sm);
+}
+
+.ui-empty__action {
+  margin-top: var(--space-2);
+}
