@@ -96,4 +96,102 @@ export function simulateScenario(actions: ScenarioAction[]): ScenarioResult {
     calculateEnergySaving(currentEnergyKwh, scenarioEnergyKwh),
     2
   )
-  const currentCost = currentEnergy
+  const currentCost = currentEnergyKwh * rate
+  const scenarioCost = scenarioEnergyKwh * rate
+  const costSaving = round(calculateCostSaving(currentCost, scenarioCost), 2)
+
+  // Comfort impact: 100 = สบายเต็ม, ลดตาม penalty
+  const comfortScore =
+    comfortWeightSum > 0
+      ? clamp(100 - (comfortPenaltySum / comfortWeightSum) * 50, 0, 100)
+      : 100
+
+  const comfortImpact: ComfortImpact = {
+    score: round(comfortScore, 0),
+    level: comfortScore >= 75 ? 'HIGH' : comfortScore >= 45 ? 'MEDIUM' : 'LOW',
+  }
+
+  return {
+    currentEnergyKwh,
+    scenarioEnergyKwh,
+    energySavingKwh,
+    costSaving,
+    comfortImpact,
+    breakdownByDevice,
+  }
+}
+
+// ============================================================
+// Preset Scenarios
+// ============================================================
+
+/** Scenario สำเร็จรูป 3 แบบ */
+export function getPresetScenarios(rate?: number): Scenario[] {
+  const settings = getSettings()
+  const electricityRate = rate ?? settings.electricityRate
+
+  const presets: Array<{
+    id: string
+    name: string
+    description: string
+    actions: ScenarioAction[]
+  }> = [
+    {
+      id: 'keep-current',
+      name: 'Keep Current',
+      description: 'ไม่เปลี่ยนพฤติกรรม — ใช้พลังงานเท่าเดิม',
+      actions: MOCK_DEVICES.map((d) => ({
+        deviceId: d.id,
+        type: 'KEEP_ON' as const,
+      })),
+    },
+    {
+      id: 'balanced-saving',
+      name: 'Balanced Saving',
+      description: 'ปิด TV และ Lights — ลดการใช้โดยไม่กระทบ comfort มาก',
+      actions: [
+        { deviceId: 'tv', type: 'TURN_OFF' },
+        { deviceId: 'lights', type: 'TURN_OFF' },
+        { deviceId: 'ac', type: 'REDUCE_USAGE', reducePercent: 30 },
+        { deviceId: 'fan', type: 'KEEP_ON' },
+        { deviceId: 'washing_machine', type: 'DELAY' },
+      ],
+    },
+    {
+      id: 'energy-saving',
+      name: 'Energy Saving',
+      description: 'ปิดทุกอย่างที่ปิดได้ — ประหยัดสูงสุด',
+      actions: [
+        { deviceId: 'tv', type: 'TURN_OFF' },
+        { deviceId: 'lights', type: 'TURN_OFF' },
+        { deviceId: 'fan', type: 'TURN_OFF' },
+        { deviceId: 'ac', type: 'TURN_OFF' },
+        { deviceId: 'washing_machine', type: 'DELAY' },
+      ],
+    },
+  ]
+
+  return presets.map((p) => {
+    const result = simulateScenario(p.actions)
+    return {
+      id: p.id,
+      name: p.name,
+      description: p.description,
+      actions: p.actions,
+      predictedEnergyKwh: result.scenarioEnergyKwh,
+      predictedCost: round(result.scenarioEnergyKwh * electricityRate, 2),
+      energySavingKwh: result.energySavingKwh,
+      costSaving: result.costSaving,
+      comfortLevel: result.comfortImpact.score,
+      preferenceScore: 0,   // จะคำนวณใน decisionService
+    }
+  })
+}
+
+/** Actions เริ่มต้น (ทุกอุปกรณ์ KEEP_ON) */
+export function getDefaultActions(): ScenarioAction[] {
+  return MOCK_DEVICES.map((d) => ({
+    deviceId: d.id,
+    type: 'KEEP_ON' as const,
+  }))
+}
